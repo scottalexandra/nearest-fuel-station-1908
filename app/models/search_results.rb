@@ -8,10 +8,7 @@ class SearchResults
   def stations
     parsed_fuel_data = get_fuel_info
     fuel_station = FuelStation.new(parsed_fuel_data)
-    destination = fuel_station.address
-    parsed_directions_data = get_directions_data(destination)
-    directions = Directions.new(parsed_directions_data)
-    StationDirections.new(directions, fuel_station)
+    FuelStationDecorator.new(fuel_station, location)
   end
 
   def get_directions_data(destination)
